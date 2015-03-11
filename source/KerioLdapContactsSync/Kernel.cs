@@ -34,7 +34,7 @@ namespace KerioConnect.LdapSync
             this.kerio = new KerioConnectClient(configuration.KerioServer);
         }
 
-        public void Run()
+        public SyncResult Run()
         {
             this.KerioLogin();
 
@@ -199,27 +199,34 @@ namespace KerioConnect.LdapSync
             this.KerioLogin();
 
             GenericResponse response;
+            var result = new SyncResult();
 
             if (updatedContacts.Any())
             {
+                result.Updated = updatedContacts.Count;
                 response = this.kerio.SetContacts(updatedContacts);
             }
 
             if (newContacts.Any())
             {
+                result.Created = updatedContacts.Count;
                 response = this.kerio.CreateContacts(newContacts);
             }
 
             if (deletedContacts.Any())
             {
+                result.Deleted = updatedContacts.Count;
                 response = this.kerio.RemoveContacts(deletedContacts.Select(c => c.id).ToArray());
             }
+
+            result.SyncedPhotos = 0;
 
             if (this.configuration.SyncPhotos)
             {
                 contacts = this.kerio.GetContacts(folder.id);
                 updatedContacts.Clear();
                 newContacts.Clear();
+
 
                 foreach (var ldapContact in ldapContacts.Where(c => c.Photo != null))
                 {
@@ -245,10 +252,13 @@ namespace KerioConnect.LdapSync
                     };
 
                     this.kerio.SetContacts(new List<Contact> { kerioContact });
+                    result.SyncedPhotos++;
                 }
             }
             
             this.kerio.Logout();
+
+            return result;
         }
 
         private bool KerioLogin()
