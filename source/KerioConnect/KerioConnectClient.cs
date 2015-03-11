@@ -28,7 +28,7 @@ namespace KerioConnect
             {
                 userName = username,
                 password,
-                application = new { name = "LdapContactsSync", vendor = "FeG", version = "1.0.0.0" }
+                application = new { name = "CsharpApiClient", vendor = "Peter Schuster", version = "1.0.0.0" }
             }));
 
             var response = this.client.Rpc(request);
