@@ -209,13 +209,13 @@ namespace KerioConnect.LdapSync
 
             if (newContacts.Any())
             {
-                result.Created = updatedContacts.Count;
+                result.Created = newContacts.Count;
                 response = this.kerio.CreateContacts(newContacts);
             }
 
             if (deletedContacts.Any())
             {
-                result.Deleted = updatedContacts.Count;
+                result.Deleted = deletedContacts.Count;
                 response = this.kerio.RemoveContacts(deletedContacts.Select(c => c.id).ToArray());
             }
 
