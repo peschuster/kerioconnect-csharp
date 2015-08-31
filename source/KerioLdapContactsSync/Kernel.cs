@@ -270,7 +270,7 @@ namespace KerioConnect.LdapSync
 
         private Folder GetFolder(string name)
         {
-            var folders = this.kerio.GetFolders();
+            var folders = this.kerio.GetPublicFolders();
 
             return folders.SingleOrDefault(f => 
                 f.access != FolderAccessType.FAccessListingOnly 

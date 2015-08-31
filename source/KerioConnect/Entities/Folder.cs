@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace KerioConnect.Entities
 {
+    [DebuggerDisplay("{name}, {type}")]
     public class Folder
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

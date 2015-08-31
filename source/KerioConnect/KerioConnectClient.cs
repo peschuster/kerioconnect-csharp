@@ -108,5 +108,14 @@ namespace KerioConnect
 
             return response == null ? null : response.Result.list;
         }
+
+        public List<Folder> GetPublicFolders()
+        {
+            var request = this.client.NewRequest("Folders.getPublic");
+
+            var response = this.client.Rpc<TypedResponse<FolderResult>>(request);
+
+            return response == null ? null : response.Result.list;
+        }
     }
 }
