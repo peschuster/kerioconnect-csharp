@@ -39,30 +39,63 @@ namespace KerioConnect.LdapSync
 
             string name = (string)entry.Attributes["displayName"][0];
             result.DisplayName = name;
-            string[] splittedName = name.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToArray();
 
-            result.LastName = splittedName[0].TryTim();
-            result.FirstName = (splittedName.Length > 1 ? splittedName[1] : string.Empty).TryTim();
-            result.NamePraefix = string.Empty;
-
-            string[] validPraefixes = { "dr", "dipl", "ing", "med", "prof" };
-
-            if (splittedName.Length > 2)
+            if (entry.Attributes.Contains("sn"))
             {
-                foreach (string element in splittedName.Skip(2))
+                result.LastName = (string)entry.Attributes["sn"][0];
+                result.LastName = result.LastName.TryTim();
+
+                if (entry.Attributes.Contains("givenname"))
                 {
-                    if (element.Split(' ').Any(s => validPraefixes.Any(p => s.IndexOf(p, StringComparison.OrdinalIgnoreCase) > -1)))
-                    {
-                        result.NamePraefix += " " + element;
-                    }
-                    else
-                    {
-                        result.LastName = element + " " + result.LastName;
-                    }
+                    result.FirstName = (string)entry.Attributes["givenname"][0];
+                    result.FirstName = result.FirstName.TryTim();
+                }
+                if (entry.Attributes.Contains("title"))
+                {
+                    result.NamePraefix = (string)entry.Attributes["title"][0];
+                    result.NamePraefix = result.NamePraefix.TryTim();
                 }
             }
+            else
+            {
+                string[] splittedName = name.Split(
+                    new[]
+                    {
+                        ","
+                    },
+                    StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToArray();
 
-            result.NamePraefix = result.NamePraefix.Trim();
+                result.LastName = splittedName[0].TryTim();
+                result.FirstName = (splittedName.Length > 1 ? splittedName[1] : string.Empty).TryTim();
+                result.NamePraefix = string.Empty;
+
+                string[] validPraefixes =
+                {
+                    "dr", "dipl", "ing", "med", "prof"
+                };
+
+                if (splittedName.Length > 2)
+                {
+                    foreach (string element in splittedName.Skip(2))
+                    {
+                        if (element.Split(' ').Any(s => validPraefixes.Any(p => s.IndexOf(p, StringComparison.OrdinalIgnoreCase) > -1)))
+                        {
+                            result.NamePraefix += " " + element;
+                        }
+                        else
+                        {
+                            result.LastName = element + " " + result.LastName;
+                        }
+                    }
+                }
+
+                result.NamePraefix = result.NamePraefix.Trim();
+            }
+            
+            if (result.NamePraefix == null)
+            {
+                result.NamePraefix = string.Empty;
+            }
 
             if (entry.Attributes.Contains("jpegPhoto"))
             {

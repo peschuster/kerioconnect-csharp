@@ -285,8 +285,8 @@ namespace KerioConnect.LdapSync
             var search = this.ldap.PagedSearch(
                 filter,
                 syncPhotos
-                    ? new[] { "dateOfBirth", "displayName", "l", "mail", "postalCode", "street", "telephoneNumber", "facsimilieTelephoneNumber", "jpegPhoto" }
-                    : new[] { "dateOfBirth", "displayName", "l", "mail", "postalCode", "street", "telephoneNumber", "facsimilieTelephoneNumber" });
+                    ? new[] { "dateOfBirth", "displayName", "l", "mail", "postalCode", "street", "telephoneNumber", "facsimilieTelephoneNumber", "givenName", "sn", "title", "gender", "jpegPhoto" }
+                    : new[] { "dateOfBirth", "displayName", "l", "mail", "postalCode", "street", "telephoneNumber", "facsimilieTelephoneNumber", "givenName", "sn", "title", "gender" });
 
             var result = new List<LdapContact>();
 
