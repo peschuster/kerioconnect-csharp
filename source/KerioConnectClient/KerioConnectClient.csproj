@@ -1,84 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E81453ED-40F8-4A5D-941A-E0930FA4B270}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KerioConnect</RootNamespace>
-    <AssemblyName>KerioConnect</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\KerioConnect.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
-    <DefineConstants>TRACE;..\..\bin</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\KerioConnect.XML</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="JsonRPC">
-      <HintPath>..\..\lib\JsonRPC.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Entities\ContactType.cs" />
-    <Compile Include="Entities\FolderAccessType.cs" />
-    <Compile Include="Entities\FolderPlaceType.cs" />
-    <Compile Include="Entities\FolderSubType.cs" />
-    <Compile Include="Entities\FolderType.cs" />
-    <Compile Include="FolderResult.cs" />
-    <Compile Include="Entities\Contact.cs" />
-    <Compile Include="TypedResponse.cs" />
-    <Compile Include="ContactsResult.cs" />
-    <Compile Include="Entities\EmailAddress.cs" />
-    <Compile Include="Entities\EmailAddressType.cs" />
-    <Compile Include="Entities\ABExtension.cs" />
-    <Compile Include="Entities\Folder.cs" />
-    <Compile Include="Entities\PhoneNumberType.cs" />
-    <Compile Include="Entities\PostalAddressType.cs" />
-    <Compile Include="JsonDateTimeConverterRfc2445.cs" />
-    <Compile Include="KerioConnectClient.cs" />
-    <Compile Include="KerioJsonClient.cs" />
-    <Compile Include="Entities\PhoneNumber.cs" />
-    <Compile Include="Entities\Photo.cs" />
-    <Compile Include="Entities\PostalAddress.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>KerioConnectClient</AssemblyName>
+		<RootNamespace>KerioConnectClient</RootNamespace>
+		<Copyright>Copyright © Peter Schuster 2015</Copyright>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.0.1</Version>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\JsonRpc\JsonRPC\JsonRPC\JsonRPC.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
 </Project>
