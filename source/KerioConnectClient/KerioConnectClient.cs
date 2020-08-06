@@ -117,5 +117,35 @@ namespace KerioConnect
 
             return response == null ? null : response.Result.list;
         }
+
+        public GenericResponse CreateCalendarEvent(CalendarEvent calendarEvent)
+        {
+            return CreateCalendarEvents(new List<CalendarEvent>() { calendarEvent });
+        }
+
+        public GenericResponse CreateCalendarEvents(IList<CalendarEvent> calendarEvents)
+        {
+            var request = this.client.NewRequest("Events.create", JToken.FromObject(new
+            {
+                events = calendarEvents
+            }));
+
+            return this.client.Rpc(request);
+        }
+
+        public GenericResponse RemoveCalendarEventOccurrence(string calendarEventId)
+        {
+            return RemoveCalendarEventOccurrences(new List<CalendarEventOccurrence>() { new CalendarEventOccurrence() { id = calendarEventId } });
+        }
+
+        public GenericResponse RemoveCalendarEventOccurrences(IList<CalendarEventOccurrence> calendarEventOccurrences)
+        {
+            var request = this.client.NewRequest("Occurrences.remove", JToken.FromObject(new
+            {
+                occurrences = calendarEventOccurrences
+            }));
+
+            return this.client.Rpc(request);
+        }
     }
 }
