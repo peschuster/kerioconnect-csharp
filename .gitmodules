@@ -1,0 +1,3 @@
+[submodule "source/JsonRpc"]
+	path = source/JsonRpc
+	url = https://github.com/dkrahmer/json-rpc-csharp.git

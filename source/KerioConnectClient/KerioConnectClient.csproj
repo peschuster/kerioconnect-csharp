@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>KerioConnectClient</AssemblyName>
+		<RootNamespace>KerioConnectClient</RootNamespace>
+		<Copyright>Copyright © Peter Schuster 2015</Copyright>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.0.1</Version>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\JsonRpc\JsonRPC\JsonRPC\JsonRPC.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+</Project>

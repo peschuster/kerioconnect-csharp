@@ -5,7 +5,7 @@ namespace KerioConnect
 {
     public class TypedResponse<TType> : Response where TType : class
     {
-        /// <summary>The result if no error occured.</summary>
+        /// <summary>The result if no error occurred.</summary>
         [JsonProperty("result", Required = Required.Default)]
         public TType Result;
 
