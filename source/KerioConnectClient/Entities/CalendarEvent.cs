@@ -9,8 +9,6 @@ namespace KerioConnect.Entities
 	[DebuggerDisplay("{summary} - {start}")]
 	public class CalendarEvent
 	{
-		// Sample JSON: {"jsonrpc":"2.0","id":22,"method":"Events.create","params":{"events":[{"folderId":"keriostorage://folder/krahmersoft.com/doug/6c1aee6a-8a8f-4221-8f23-074299491a9d","location":"","description":"New Event 1 Description","label":"None","access":"EAccessCreator","attendees":[{"displayName":"Doug Krahmer","emailAddress":"doug@krahmersoft.com","role":"RoleOrganizer","isNotified":false}],"freeBusy":"Free","isPrivate":false,"isAllDay":false,"priority":"Normal","start":"20200806T180000-0700","end":"20200806T181500-0700","isCancelled":false,"travelMinutes":0,"watermark":0,"summary":"New Event 1","reminder":{"isSet":true,"minutesBeforeStart":15,"type":"ReminderRelative"},"rule":{"isSet":false}}]}}
-
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public string access { get; set; } = "EAccessCreator";
 
