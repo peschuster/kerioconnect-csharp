@@ -126,7 +126,6 @@ publish/
 
 # Publish Web Output
 *.Publish.xml
-*.pubxml
 *.publishproj
 
 # NuGet Packages Directory
