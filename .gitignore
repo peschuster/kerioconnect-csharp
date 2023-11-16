@@ -215,3 +215,5 @@ pip-log.txt
 
 AppSettings.Secret.config
 !/lib/*
+
+.vs/

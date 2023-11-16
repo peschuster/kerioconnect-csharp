@@ -57,7 +57,7 @@ namespace KerioConnect.Entities
         public int messageUnread { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int messageSize { get; set; }
+        public long messageSize { get; set; }
 
         [JsonProperty("checked", NullValueHandling = NullValueHandling.Ignore)]
         public bool isChecked { get; set; }
